@@ -2,14 +2,7 @@ import { loadFont as loadSpaceGrotesk } from "@remotion/google-fonts/SpaceGrotes
 import { loadFont as loadInter } from "@remotion/google-fonts/Inter";
 import { loadFont as loadJetBrainsMono } from "@remotion/google-fonts/JetBrainsMono";
 
-// --- Visual identity (spec.md §8.2 / §8.3) ---
-export const COLORS = {
-  deepNavy: "#07111F",
-  darkBlue: "#102A43",
-  electricCyan: "#00C8FF",
-  techBlue: "#3D83FF",
-  iceWhite: "#EAF4FF",
-} as const;
+// Warna kini per episode: lihat THEME_DEFAULTS di src/engine/schema.ts
 
 // --- Typography ---
 const space = loadSpaceGrotesk("normal", {

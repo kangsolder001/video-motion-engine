@@ -1,0 +1,2518 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EP\\d{3}$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "contentPillar": {
+      "type": "string"
+    },
+    "targetAudience": {
+      "type": "string"
+    },
+    "language": {
+      "default": "id-ID",
+      "type": "string"
+    },
+    "voice": {
+      "default": "id-ID-ArdiNeural",
+      "type": "string"
+    },
+    "rate": {
+      "default": "+15%",
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "mainQuestion": {
+      "type": "string"
+    },
+    "keyTakeaway": {
+      "type": "string"
+    },
+    "theme": {
+      "default": {
+        "background": "#07111F",
+        "surface": "#102A43",
+        "primary": "#00C8FF",
+        "secondary": "#3D83FF",
+        "text": "#EAF4FF",
+        "gridLine": "#1f7ba8",
+        "gridLineFaint": "#114263",
+        "floor": "#060f1c",
+        "brand": "TECHNOLOGY EXPLAINED"
+      },
+      "type": "object",
+      "properties": {
+        "background": {
+          "default": "#07111F",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "surface": {
+          "default": "#102A43",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "primary": {
+          "default": "#00C8FF",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "secondary": {
+          "default": "#3D83FF",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "text": {
+          "default": "#EAF4FF",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "gridLine": {
+          "default": "#1f7ba8",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "gridLineFaint": {
+          "default": "#114263",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "floor": {
+          "default": "#060f1c",
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "brand": {
+          "default": "TECHNOLOGY EXPLAINED",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "narration": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^n\\d+$"
+          },
+          "scene": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "scene",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "scenes": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^SC\\d{2}$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "headline": {
+            "type": "string",
+            "maxLength": 18
+          },
+          "subline": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "motion": {
+            "type": "string",
+            "description": "Deskripsi visual dari Claude — panduan untuk AI yang mengisi objects."
+          },
+          "camera": {
+            "default": {
+              "preset": "auto"
+            },
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "to": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "lookFrom": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "lookTo": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "from",
+                  "to",
+                  "lookFrom",
+                  "lookTo"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "preset": {
+                    "default": "auto",
+                    "type": "string",
+                    "enum": [
+                      "auto",
+                      "static",
+                      "push-in",
+                      "pull-out",
+                      "crane-up",
+                      "orbit",
+                      "top-down"
+                    ]
+                  },
+                  "focus": {
+                    "type": "array",
+                    "prefixItems": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ],
+                    "items": false,
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "distance": {
+                    "type": "number",
+                    "minimum": 5,
+                    "maximum": 250
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "objects": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "jam"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "queue": {
+                      "default": 11,
+                      "type": "integer",
+                      "minimum": 3,
+                      "maximum": 20
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "escapeColor": {
+                      "default": "secondary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Hook: satu benda besar macet di jalur sempit, antrean menumpuk di belakangnya."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "lanes"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "length": {
+                      "default": 100,
+                      "type": "number",
+                      "minimum": 30,
+                      "maximum": 250
+                    },
+                    "gap": {
+                      "default": 6,
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 20
+                    },
+                    "lanes": {
+                      "minItems": 1,
+                      "maxItems": 4,
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "width": {
+                            "default": 4,
+                            "type": "number",
+                            "minimum": 1,
+                            "maximum": 14
+                          },
+                          "flow": {
+                            "default": "fast",
+                            "type": "string",
+                            "enum": [
+                              "fast",
+                              "slow",
+                              "jammed",
+                              "lossy"
+                            ]
+                          },
+                          "direction": {
+                            "default": "away",
+                            "type": "string",
+                            "enum": [
+                              "away",
+                              "toward"
+                            ]
+                          },
+                          "color": {
+                            "default": "primary",
+                            "anyOf": [
+                              {
+                                "type": "string",
+                                "enum": [
+                                  "primary",
+                                  "secondary",
+                                  "text",
+                                  "surface",
+                                  "background"
+                                ]
+                              },
+                              {
+                                "type": "string",
+                                "pattern": "^#[0-9a-fA-F]{6}$"
+                              }
+                            ]
+                          },
+                          "arrow": {
+                            "default": "none",
+                            "type": "string",
+                            "enum": [
+                              "up",
+                              "down",
+                              "none"
+                            ]
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "description": "tiap item: {width 1–14, flow fast/slow/jammed/lossy, direction away/toward, color, arrow up/down/none}"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "lanes"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Perbandingan 1–4 jalur data berdampingan. flow: fast=lancar, slow=pelan, jammed=menumpuk, lossy=paket hilang."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "squeeze"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "wideColor": {
+                      "default": "secondary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "narrowColor": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Dua pipa: satu lebar mengalir deras, satu menyempit dan alirannya melambat (bandwidth / bottleneck)."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "roundtrip"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "distance": {
+                      "default": 14,
+                      "type": "number",
+                      "minimum": 6,
+                      "maximum": 30
+                    },
+                    "period": {
+                      "default": 1.6,
+                      "type": "number",
+                      "minimum": 0.6,
+                      "maximum": 6
+                    },
+                    "leftColor": {
+                      "default": "secondary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "rightColor": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Dua node, satu paket bolak-balik di antaranya + cincin ACK (latency, request/response, ping)."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "loss"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "retryColor": {
+                      "default": "secondary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Deretan paket, satu menguap di tengah jalan lalu sekumpulan paket dikirim ulang (packet loss, retry)."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "hub"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "spokes": {
+                      "default": 5,
+                      "type": "integer",
+                      "minimum": 2,
+                      "maximum": 8
+                    },
+                    "radius": {
+                      "default": 16,
+                      "type": "number",
+                      "minimum": 8,
+                      "maximum": 30
+                    },
+                    "traffic": {
+                      "default": "both",
+                      "type": "string",
+                      "enum": [
+                        "in",
+                        "out",
+                        "both"
+                      ]
+                    },
+                    "hubColor": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "spokeColor": {
+                      "default": "secondary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Satu node pusat (server/router/cloud) terhubung ke banyak node (client/perangkat IoT), paket mengalir di jari-jari."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "stack"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "layers": {
+                      "default": 4,
+                      "type": "integer",
+                      "minimum": 2,
+                      "maximum": 7
+                    },
+                    "reveal": {
+                      "default": true,
+                      "type": "boolean"
+                    },
+                    "colors": {
+                      "default": [
+                        "secondary",
+                        "primary"
+                      ],
+                      "minItems": 1,
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "enum": [
+                              "primary",
+                              "secondary",
+                              "text",
+                              "surface",
+                              "background"
+                            ]
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^#[0-9a-fA-F]{6}$"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Tumpukan lapisan (arsitektur berlapis, OSI, stack teknologi). Beri nama lapisan lewat `labels`."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "horizon"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Closing: jalur membentang ke horizon, gelombang sinyal menjauh, partikel naik. Pasangkan dengan kamera pull-out."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "lane"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "x": {
+                      "default": 0,
+                      "type": "number"
+                    },
+                    "width": {
+                      "default": 4,
+                      "type": "number",
+                      "minimum": 0.5,
+                      "maximum": 30
+                    },
+                    "length": {
+                      "default": 90,
+                      "type": "number",
+                      "minimum": 5,
+                      "maximum": 300
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "opacity": {
+                      "default": 0.13,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Jalur datar di lantai dengan tepi menyala."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "packets"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "x": {
+                      "default": 0,
+                      "type": "number"
+                    },
+                    "width": {
+                      "default": 4,
+                      "type": "number",
+                      "minimum": 0.5,
+                      "maximum": 30
+                    },
+                    "count": {
+                      "default": 12,
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 40
+                    },
+                    "length": {
+                      "default": 90,
+                      "type": "number",
+                      "minimum": 5,
+                      "maximum": 300
+                    },
+                    "direction": {
+                      "default": "away",
+                      "type": "string",
+                      "enum": [
+                        "away",
+                        "toward"
+                      ]
+                    },
+                    "speed": {
+                      "default": 0.2,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1.5
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "size": {
+                      "default": 1.2,
+                      "type": "number",
+                      "minimum": 0.3,
+                      "maximum": 4
+                    },
+                    "seed": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "loss": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "glow": {
+                      "default": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Paket data (kubus menyala) mengalir di sepanjang sumbu Z."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "model"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "asset": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9-]+$"
+                    },
+                    "position": {
+                      "default": [
+                        0,
+                        0,
+                        0
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "size": {
+                      "default": 8,
+                      "type": "number",
+                      "minimum": 0.5,
+                      "maximum": 80
+                    },
+                    "rotationY": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": -360,
+                      "maximum": 360
+                    },
+                    "spin": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": -180,
+                      "maximum": 180
+                    },
+                    "bob": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 5
+                    },
+                    "style": {
+                      "default": "hologram",
+                      "type": "string",
+                      "enum": [
+                        "hologram",
+                        "original"
+                      ]
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "animation": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "moveTo": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "moveDuring": {
+                      "default": [
+                        0,
+                        1
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "asset"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Model 3D .glb dari library aset (dicari & diunduh oleh AI). Ukuran otomatis, gaya hologram mengikuti tema."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "block"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "position": {
+                      "default": [
+                        0,
+                        1,
+                        0
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "size": {
+                      "default": [
+                        2,
+                        2,
+                        2
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "style": {
+                      "default": "solid",
+                      "type": "string",
+                      "enum": [
+                        "solid",
+                        "hero",
+                        "ghost"
+                      ]
+                    },
+                    "moveTo": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "moveDuring": {
+                      "default": [
+                        0,
+                        1
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Balok (file, data, server rack). Opsional bergerak ke `moveTo` selama `moveDuring`."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "node"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "position": {
+                      "default": [
+                        0,
+                        4,
+                        0
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "scale": {
+                      "default": 1,
+                      "type": "number",
+                      "minimum": 0.2,
+                      "maximum": 5
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Perangkat / server / titik jaringan (ikosahedron menyala)."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "arrow"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "position": {
+                      "default": [
+                        0,
+                        8,
+                        0
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "direction": {
+                      "default": "up",
+                      "type": "string",
+                      "enum": [
+                        "up",
+                        "down"
+                      ]
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "scale": {
+                      "default": 1,
+                      "type": "number",
+                      "minimum": 0.2,
+                      "maximum": 5
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Panah vertikal (upload = up, download = down)."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "ring"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "position": {
+                      "default": [
+                        0,
+                        0.3,
+                        0
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "radius": {
+                      "default": 9,
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 80
+                    },
+                    "thickness": {
+                      "default": 0.35,
+                      "type": "number",
+                      "minimum": 0.05,
+                      "maximum": 3
+                    },
+                    "speed": {
+                      "default": 0.5,
+                      "type": "number",
+                      "minimum": 0.05,
+                      "maximum": 3
+                    },
+                    "phase": {
+                      "default": 0,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "orientation": {
+                      "default": "upright",
+                      "type": "string",
+                      "enum": [
+                        "upright",
+                        "flat"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Cincin denyut yang melebar lalu memudar (sinyal, ping, broadcast)."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "particles"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "count": {
+                      "default": 40,
+                      "type": "integer",
+                      "minimum": 5,
+                      "maximum": 120
+                    },
+                    "area": {
+                      "default": [
+                        120,
+                        34,
+                        160
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "color": {
+                      "default": "primary",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "speed": {
+                      "default": 0.9,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 3
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Partikel kecil naik perlahan — suasana."
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "const": "light"
+                    },
+                    "show": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        },
+                        {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 1
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
+                    },
+                    "at": {
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "pulse": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "default": 0.05,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 0.5
+                        },
+                        "speed": {
+                          "default": 1,
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 5
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "position": {
+                      "default": [
+                        0,
+                        20,
+                        10
+                      ],
+                      "type": "array",
+                      "prefixItems": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ],
+                      "items": false,
+                      "minItems": 3,
+                      "maxItems": 3
+                    },
+                    "color": {
+                      "default": "text",
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "enum": [
+                            "primary",
+                            "secondary",
+                            "text",
+                            "surface",
+                            "background"
+                          ]
+                        },
+                        {
+                          "type": "string",
+                          "pattern": "^#[0-9a-fA-F]{6}$"
+                        }
+                      ]
+                    },
+                    "intensity": {
+                      "default": 400,
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 3000
+                    },
+                    "distance": {
+                      "default": 150,
+                      "type": "number",
+                      "minimum": 10,
+                      "maximum": 500
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Lampu titik tambahan."
+                }
+              ]
+            }
+          },
+          "labels": {
+            "default": [],
+            "maxItems": 6,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 28
+                },
+                "position": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 3,
+                  "maxItems": 3
+                },
+                "show": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "color": {
+                  "default": "text",
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": [
+                        "primary",
+                        "secondary",
+                        "text",
+                        "surface",
+                        "background"
+                      ]
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^#[0-9a-fA-F]{6}$"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "text",
+                "position"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "purpose",
+          "headline",
+          "subline",
+          "motion",
+          "objects"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "narration",
+    "scenes"
+  ],
+  "additionalProperties": false
+}

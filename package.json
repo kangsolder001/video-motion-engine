@@ -2,13 +2,17 @@
   "name": "video-motion",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "Technology Explained - AI content production pipeline (Remotion)",
   "scripts": {
     "dev": "remotion studio",
-    "render": "remotion render",
+    "render": "node scripts/render.mjs",
     "compositions": "remotion compositions",
     "tts": "node scripts/tts.mjs",
-    "check": "tsc --noEmit"
+    "validate": "node scripts/validate.ts",
+    "check:subs": "node scripts/check-subtitles.ts",
+    "check": "tsc --noEmit",
+    "asset:add": "node scripts/asset-add.mjs"
   },
   "dependencies": {
     "@react-three/fiber": "^9.8.2",
@@ -20,7 +24,8 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "remotion": "4.0.541",
-    "three": "^0.187.0"
+    "three": "^0.187.0",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",

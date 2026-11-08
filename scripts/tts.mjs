@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
  * TTS generator — M1/M5.
- * Membaca src/episode/episode.json, menghasilkan MP3 per segmen narasi
- * + subtitle JSON (timing per kata, dari edge-tts sendiri),
- * lalu menulis durasi terukur ke src/episode/audio-durations.json.
+ * Membaca episodes/<ID>/episode.json, menghasilkan MP3 per segmen narasi
+ * ke public/episodes/<ID>/audio/ + timing per kata (dari edge-tts sendiri),
+ * lalu menulis durasi terukur & timing kata ke episodes/<ID>/timing.json.
  *
  * Pakai node-edge-tts (murni npm, tanpa Python/pip).
  * Output: 24 kHz mono MP3 48 kbps (CBR).
  *
- * Usage: node scripts/tts.mjs [--force]
+ * Usage: node scripts/tts.mjs EP001 [--force]
  */
 import { mkdir, readFile, writeFile, stat } from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -16,14 +16,24 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const EPISODE = path.join(ROOT, "src/episode/episode.json");
-const OUT_DIR = path.join(ROOT, "public/audio");
-const DURATIONS = path.join(ROOT, "src/episode/audio-durations.json");
-const WORDS = path.join(ROOT, "src/episode/words.json");
+const ID = process.argv.slice(2).find((a) => !a.startsWith("--"));
+if (!ID || !/^EP\d{3}$/.test(ID)) {
+  console.error("Usage: npm run tts -- EP001 [--force]");
+  process.exit(1);
+}
+const EPISODE = path.join(ROOT, "episodes", ID, "episode.json");
+const OUT_DIR = path.join(ROOT, "public/episodes", ID, "audio");
+const TIMING = path.join(ROOT, "episodes", ID, "timing.json");
 
 const force = process.argv.includes("--force");
 
-const ep = JSON.parse(await readFile(EPISODE, "utf8"));
+const { parseEpisode } = await import("../src/engine/schema.ts");
+const parsed = parseEpisode(JSON.parse(await readFile(EPISODE, "utf8")));
+if (!parsed.ok) {
+  console.error(`${ID}/episode.json tidak valid:\n  ` + parsed.errors.join("\n  "));
+  process.exit(1);
+}
+const ep = parsed.episode;
 await mkdir(OUT_DIR, { recursive: true });
 
 /** Durasi MP3 CBR dari jumlah frame. 1 frame = 1152 sampel. */
@@ -80,6 +90,9 @@ function mp3Duration(buf) {
 
 const { EdgeTTS } = await import("node-edge-tts");
 
+// Teks narasi saat audio terakhir dibuat — bila berubah, audio dibuat ulang.
+const prevTexts = existsSync(TIMING) ? (JSON.parse(await readFile(TIMING, "utf8")).texts ?? {}) : {};
+const texts = {};
 const durations = {};
 const words = {};
 let anyGenerated = false;
@@ -90,13 +103,18 @@ for (const seg of ep.narration) {
   const subAuto = path.join(OUT_DIR, `${seg.id}.mp3.json`);
   const sub = path.join(OUT_DIR, `${seg.id}.words.json`);
   const have =
-    !force && existsSync(file) && existsSync(subAuto) && (await stat(file)).size > 1000;
+    !force &&
+    prevTexts[seg.id] === seg.text &&
+    existsSync(file) &&
+    (existsSync(subAuto) || existsSync(sub)) &&
+    (await stat(file)).size > 1000;
+  texts[seg.id] = seg.text;
 
   if (!have) {
     const tts = new EdgeTTS({
       voice: ep.voice,
       lang: ep.language,
-      rate: ep.rate ?? "default",
+      rate: ep.rate,
       saveSubtitles: true,
       timeout: 30000,
     });
@@ -124,10 +142,9 @@ for (const seg of ep.narration) {
   }
 }
 
-await writeFile(DURATIONS, JSON.stringify(durations, null, 2) + "\n");
-await writeFile(WORDS, JSON.stringify(words, null, 2) + "\n");
+await writeFile(TIMING, JSON.stringify({ durations, words, texts }, null, 2) + "\n");
 
-const GAP = 0.3;
+const GAP = 0.2; // sama dengan src/engine/timeline.ts
 const total = Object.values(durations).reduce((a, b) => a + b, 0);
 const gaps = Math.max(0, ep.narration.length - 1) * GAP;
 const estimate = total + gaps;

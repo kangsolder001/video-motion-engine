@@ -3,17 +3,20 @@ import { Glow } from "./glow";
 // ---------------------------------------------------------------------------
 // Lantai grid — bahasa visual "technical environment" (spec.md §8.1)
 // ---------------------------------------------------------------------------
-export const GridFloor: React.FC<{ size?: number; divisions?: number }> = ({
-  size = 500,
-  divisions = 50,
-}) => (
+export const GridFloor: React.FC<{
+  size?: number;
+  divisions?: number;
+  floor?: string;
+  line?: string;
+  faint?: string;
+}> = ({ size = 500, divisions = 50, floor = "#060f1c", line = "#1f7ba8", faint = "#114263" }) => (
   <group>
     <mesh rotation-x={-Math.PI / 2} position={[0, -0.06, 0]}>
       <planeGeometry args={[size, size]} />
-      <meshBasicMaterial color="#060f1c" />
+      <meshBasicMaterial color={floor} />
     </mesh>
     <gridHelper
-      args={[size, divisions, "#1f7ba8", "#114263"]}
+      args={[size, divisions, line, faint]}
       position={[0, -0.02, 0]}
     />
   </group>

@@ -1,0 +1,88 @@
+{
+  "id": "EP002",
+  "title": "Kenapa Musim di Indonesia Sulit Ditebak?",
+  "contentPillar": "Sains & Iklim",
+  "targetAudience": "Beginner",
+  "objective": "Penonton paham bahwa musim di Indonesia digerakkan angin monsun, dan waktunya bergeser karena tiga pengganggu: ENSO, Dipole Samudra Hindia, dan MJO.",
+  "mainQuestion": "Kenapa musim hujan dan kemarau di Indonesia tidak lagi datang tepat waktu?",
+  "keyTakeaway": "Musim tetap ada, tapi waktunya digeser oleh laut dan atmosfer di sekitar kita — pantau prakiraan BMKG, bukan kalender.",
+  "narration": [
+    {
+      "id": "n1",
+      "scene": "SC01",
+      "text": "Dulu hujan datang Oktober. Sekarang Agustus sudah banjir, Desember malah kering. Kenapa musim kita sulit ditebak?"
+    },
+    {
+      "id": "n2",
+      "scene": "SC02",
+      "text": "Musim kita digerakkan angin monsun. Dari Asia membawa hujan, dari Australia membawa udara kering."
+    },
+    {
+      "id": "n3",
+      "scene": "SC03",
+      "text": "Tapi monsun punya pengganggu. Pertama, El Nino dan La Nina di Pasifik, yang menggeser awan hujan menjauh atau mendekat."
+    },
+    {
+      "id": "n4",
+      "scene": "SC03",
+      "text": "Kedua, Dipole Samudra Hindia. Saat laut di barat kita mendingin, hujan di Sumatra dan Jawa ikut berkurang."
+    },
+    {
+      "id": "n5",
+      "scene": "SC03",
+      "text": "Ketiga, gelombang MJO, gumpalan awan raksasa yang lewat setiap tiga puluh sampai enam puluh hari."
+    },
+    {
+      "id": "n6",
+      "scene": "SC04",
+      "text": "Ketiganya bisa saling menguatkan atau saling meniadakan. Pemanasan global membuat hujan ekstrem makin sering."
+    },
+    {
+      "id": "n7",
+      "scene": "SC05",
+      "text": "Jadi musim tetap ada, hanya waktunya bergeser. Pantau prakiraan musim dari BMKG, bukan kalender."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "SC01",
+      "name": "Hook — Kalender yang Macet",
+      "purpose": "Hook",
+      "headline": "MUSIM KACAU",
+      "subline": "hujan datang di bulan yang salah",
+      "motion": "Satu gumpalan awan hujan raksasa (balok besar menyala) tertahan di jalur, antrean bulan-bulan kecil menumpuk di belakangnya — kalender musim yang macet."
+    },
+    {
+      "id": "SC02",
+      "name": "Context — Dua Angin Monsun",
+      "purpose": "Context",
+      "headline": "MONSUN",
+      "subline": "Asia: basah / Australia: kering",
+      "motion": "Dua jalur angin berdampingan dengan arah berlawanan: jalur lebar membawa banyak paket uap air menuju kamera (monsun Asia, panah turun), jalur sempit dan pucat mengalir menjauh (monsun Australia). Label ASIA dan AUSTRALIA di atas masing-masing jalur."
+    },
+    {
+      "id": "SC03",
+      "name": "Explanation — Tiga Pengganggu",
+      "purpose": "Explanation",
+      "headline": "3 PENGGANGGU",
+      "subline": "El Nino / Dipole Samudra Hindia / MJO",
+      "motion": "Tiga beat bergantian mengikuti narasi n3, n4, n5. (1) EL NINO: dua titik, PASIFIK dan INDONESIA, gumpalan awan bolak-balik di antara keduanya. (2) DIPOLE: dua pipa uap air dari laut, satu menyempit saat laut mendingin sehingga alirannya melambat. (3) MJO: satu titik pusat (Indonesia) dikelilingi banyak titik, gelombang awan menyebar dan lewat berkala. Label nama tiap pengganggu saat beat-nya tampil."
+    },
+    {
+      "id": "SC04",
+      "name": "Visual Reveal — Saling Tumpuk",
+      "purpose": "Visual Reveal",
+      "headline": "SALING TUMPUK",
+      "subline": "menguatkan atau meniadakan",
+      "motion": "Tiga jalur berdampingan: satu mengalir lancar (tahun normal), satu menumpuk padat (hujan ekstrem), satu putus-putus dengan paket hilang (kemarau panjang). Label NORMAL, EKSTREM, KERING."
+    },
+    {
+      "id": "SC05",
+      "name": "Closing — Cek Prakiraan",
+      "purpose": "Closing",
+      "headline": "CEK BMKG",
+      "subline": "musim bergeser, bukan hilang",
+      "motion": "Kamera menarik keluar ke horizon, gelombang sinyal menjauh, partikel uap air naik perlahan — musim tetap datang, hanya waktunya bergeser."
+    }
+  ]
+}
