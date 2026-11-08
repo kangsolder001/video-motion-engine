@@ -1,0 +1,91 @@
+{
+  "id": "EP001",
+  "title": "Kenapa Upload Lambat?",
+  "contentPillar": "Networking & Internet",
+  "targetAudience": "Beginner",
+  "language": "id-ID",
+  "voice": "id-ID-ArdiNeural",
+  "rate": "+15%",
+  "objective": "Penonton paham bahwa kecepatan upload dan download berbeda karena sifat jaringan yang asimetris, dan tahu tiga penyebab utamanya.",
+  "mainQuestion": "Kenapa upload file jauh lebih lambat daripada download file yang sama?",
+  "keyTakeaway": "Upload dan download memakai jalur berbeda dengan kapasitas berbeda — bukan WiFi yang rusak.",
+  "narration": [
+    {
+      "id": "n1",
+      "scene": "SC01",
+      "text": "Upload satu gigabyte, tiga puluh menit. Download file yang sama, cuma lima menit. Kenapa?"
+    },
+    {
+      "id": "n2",
+      "scene": "SC02",
+      "text": "Karena internet di rumahmu itu asimetris. Jalur ke bawah lebar, jalur ke atas sempit."
+    },
+    {
+      "id": "n3",
+      "scene": "SC03",
+      "text": "Pertama, bandwidth unggah. Kapasitas kirim jauh lebih kecil daripada kapasitas terima."
+    },
+    {
+      "id": "n4",
+      "scene": "SC03",
+      "text": "Kedua, latency. Setiap paket harus menunggu tanda terima bolak-balik ke server."
+    },
+    {
+      "id": "n5",
+      "scene": "SC03",
+      "text": "Ketiga, paket hilang di jalan. Satu hilang, seluruh antrean harus dikirim ulang."
+    },
+    {
+      "id": "n6",
+      "scene": "SC04",
+      "text": "Bandingkan tiga jalur. Yang lebar mengalir lancar. Yang sempit menumpuk. Satu paket hilang, semuanya berhenti."
+    },
+    {
+      "id": "n7",
+      "scene": "SC05",
+      "text": "Jadi bukan WiFi-mu yang rusak. Upload memang berbagi jalur yang lebih sempit. Kompres dulu, atau unggah saat jam sepi."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "SC01",
+      "name": "Hook — File Raksasa",
+      "purpose": "Hook",
+      "headline": "1 GB",
+      "subline": "30 menit untuk upload",
+      "motion": "Satu paket raksasa tertahan, antrean menumpuk di belakangnya"
+    },
+    {
+      "id": "SC02",
+      "name": "Context — Jalur Asimetris",
+      "purpose": "Context",
+      "headline": "ASIMETRIS",
+      "subline": "downstream lebar / upstream sempit",
+      "motion": "Kamera menyingkap dua jalur berdampingan dengan lebar berbeda"
+    },
+    {
+      "id": "SC03",
+      "name": "Explanation — Tiga Penyebab",
+      "purpose": "Explanation",
+      "headline": "3 PENYEBAB",
+      "subline": "bandwidth / latency / packet loss",
+      "motion": "Tiga sub-beat: gauge menyempit, denyut bolak-balik, paket menguap lalu dikirim ulang"
+    },
+    {
+      "id": "SC04",
+      "name": "Visual Reveal — Perbandingan",
+      "purpose": "Visual Reveal",
+      "headline": "3 JALUR",
+      "subline": "lebar / sempit / kehilangan paket",
+      "motion": "Tiga lajur mengalir berdampingan dengan laju berbeda"
+    },
+    {
+      "id": "SC05",
+      "name": "Closing — Takeaway",
+      "purpose": "Closing",
+      "headline": "BUKAN WIFI-MU",
+      "subline": "kompres, atau unggah saat jam sepi",
+      "motion": "Kamera menarik keluar hingga horizon grid tampak, lalu judul muncul"
+    }
+  ]
+}

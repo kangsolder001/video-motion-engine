@@ -1,0 +1,31 @@
+{
+  "name": "video-motion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Technology Explained - AI content production pipeline (Remotion)",
+  "scripts": {
+    "dev": "remotion studio",
+    "render": "remotion render",
+    "compositions": "remotion compositions",
+    "tts": "node scripts/tts.mjs",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.8.2",
+    "@remotion/cli": "4.0.541",
+    "@remotion/google-fonts": "4.0.541",
+    "@remotion/media-utils": "4.0.541",
+    "@remotion/three": "4.0.541",
+    "node-edge-tts": "^1.2.12",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "4.0.541",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/three": "^0.187.0",
+    "typescript": "^5.7.2"
+  }
+}
