@@ -2,3 +2,7 @@ node_modules/
 out/
 *.log
 .DS_Store
+
+# Hasil generate (dibuat ulang oleh npm run tts / render)
+public/episodes/*/audio/
+episodes/*/timing.json
