@@ -10,6 +10,9 @@ Tidak ada kode yang perlu ditulis per episode.
 | 3. Validasi | `npm run validate -- EPxxx` | error → tempel balik ke AI murah |
 | 4. Audio + render | `npm run render -- EPxxx` | `out/EPxxx.mp4` |
 
+AI agent (OpenCode, Codex, Cline, Aider, …) cukup diberi perintah: _"Selesaikan episode EPxxx sesuai AGENTS.md"_.
+Prompt di bawah untuk AI chat biasa (tanpa akses terminal).
+
 Preview interaktif: `npm run dev` (semua folder `episodes/EPxxx/` otomatis muncul).
 Narasi diubah? `npm run tts -- EPxxx` membuat ulang hanya segmen yang teksnya berubah.
 

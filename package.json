@@ -12,7 +12,8 @@
     "validate": "node scripts/validate.ts",
     "check:subs": "node scripts/check-subtitles.ts",
     "check": "tsc --noEmit",
-    "asset:add": "node scripts/asset-add.mjs"
+    "asset:add": "node scripts/asset-add.mjs",
+    "preview": "node scripts/preview.ts"
   },
   "dependencies": {
     "@react-three/fiber": "^9.8.2",
